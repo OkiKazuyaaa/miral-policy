@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AURAL｜AI電話応対 料金プラン（席課金・完全月額）</title>
+  <meta name="description" content="AURAL（オーラル）はAI電話応対／IVRを“席＝同時通話1”の完全月額で提供。日次キャップ×22日で実効単価は常に35〜38円/分。人件費2,600円/時と比較しても大幅なコスト最適化を実現。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#0f172a; --muted:#94a3b8; --text:#e5ecff;
+      --primary:#5b8cff; --primary-2:#7c3aed; --accent:#22d3ee; --ok:#22c55e; --warn:#f59e0b;
+      --card:#0b132a; --border:rgba(255,255,255,.08);
+      --radius:18px; --shadow:0 12px 30px rgba(0,10,40,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; background:radial-gradient(1200px 600px at 10% 0%, rgba(124,58,237,.25), transparent), linear-gradient(180deg, #0a0f1e 0%, #0b1020 100%); color:var(--text);}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px}
+    header{position:sticky; top:0; backdrop-filter: blur(8px); background: rgba(11,16,32,.6); border-bottom:1px solid var(--border); z-index:50}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .brand-badge{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg, var(--primary), var(--primary-2)); box-shadow:var(--shadow)}
+    .nav a{color:var(--muted); font-weight:600; margin-left:22px}
+    .nav a:hover{color:var(--text)}
+
+    .hero{padding:80px 0 36px}
+    .hero .title{font-size: clamp(28px, 4vw, 46px); line-height:1.1; font-weight:800; letter-spacing:.2px}
+    .grad{background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .subtitle{color:var(--muted); font-size: clamp(14px, 1.8vw, 18px); margin-top:14px}
+    .cta{display:flex; gap:14px; margin-top:22px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; font-weight:700; border:1px solid var(--border); transition: .2s ease;}
+    .btn-primary{background:linear-gradient(135deg, var(--primary), var(--primary-2)); border:0}
+    .btn:hover{transform: translateY(-1px)}
+
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--border); border-radius:999px; color:#cbd5e1; background:rgba(255,255,255,.04); font-weight:600}
+    .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:26px; margin-top:28px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow)}
+    .card .hd{padding:20px 20px 0; font-weight:800; font-size:18px}
+    .card .bd{padding:16px 20px}
+
+    .features{padding:32px 0 12px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+    .feature{padding:18px; border:1px solid var(--border); border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02))}
+    .feature .icon{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; background:rgba(124,58,237,.25)}
+    .feature h4{margin:10px 0 6px; font-size:16px}
+    .feature p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
+
+    .section{padding:64px 0}
+    .sec-h{font-size:clamp(22px, 3.2vw, 34px); margin:0 0 8px; font-weight:800}
+    .sec-sub{color:var(--muted); margin:0 0 26px}
+
+    .pricing{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    .price-card{position:relative; overflow:hidden}
+    .pc-hd{padding:20px 20px 0}
+    .pc-title{font-weight:800; font-size:20px}
+    .pc-bd{padding:14px 20px 20px}
+    .pc-money{font-size:28px; font-weight:800}
+    .pc-money small{font-weight:700; color:var(--muted); font-size:13px}
+    .kv{display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin:14px 0}
+    .kv .k{color:var(--muted); font-size:12px}
+    .kv .v{font-weight:700}
+    .pc-ft{border-top:1px dashed var(--border); padding:14px 20px; font-size:13px; color:var(--muted)}
+
+    .calc{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .form{padding:18px}
+    .form label{display:block; font-weight:700; margin-bottom:8px}
+    .form input, .form select{width:100%; background:#0c1428; border:1px solid var(--border); border-radius:12px; padding:12px; color:var(--text)}
+    .stat{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .stat .s{padding:14px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.03)}
+    .stat .s .k{color:var(--muted); font-size:12px}
+    .stat .s .v{font-weight:800; font-size:18px; margin-top:6px}
+
+    .compare{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
+    .compare .item{padding:20px}
+    .list{margin:0; padding-left:18px; color:#cbd5e1}
+    .list li{margin:6px 0}
+
+    .faq{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    .qa{padding:16px; border:1px solid var(--border); border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02))}
+    .qa h4{margin:0 0 6px}
+    .qa p{margin:0; color:var(--muted)}
+
+    footer{border-top:1px solid var(--border); padding:28px 0; color:var(--muted)}
+
+    @media (max-width: 1020px){
+      .hero-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr 1fr}
+      .pricing{grid-template-columns:1fr 1fr}
+      .compare{grid-template-columns:1fr}
+      .calc{grid-template-columns:1fr}
+      .faq{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="white" opacity=".12"/>
+            <path d="M7 13c2.8-2.4 7.2-2.4 10 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 9c1.8-1.6 4.2-1.6 6 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+          </svg>
+        </div>
+        <span>AURAL</span>
+      </div>
+      <nav>
+        <a href="#features">特長</a>
+        <a href="#pricing">料金</a>
+        <a href="#compare">比較</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn-primary" style="margin-left:20px">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="pill">席＝同時通話1｜日次キャップ×22日で実効単価は常に安定</span>
+        <div class="hero-grid">
+          <div>
+            <h1 class="title">AI電話応対を、<span class="grad">席単位の完全月額</span>で。
+            <br/>人件費2,600円/時に勝てる、<span class="grad">実効35〜38円/分</span>設計。</h1>
+            <p class="subtitle">AURAL（オーラル）は、IVR→AI要件分類→SMS/LINE送信・折返しキュー化までを自動化。<br>同時通話は“席”の追加で水平スケール。上限超は席の「日次追加」または固定分数パックで対応します。</p>
+            <div class="cta">
+              <a href="#pricing" class="btn btn-primary">料金プランを見る</a>
+              <a href="#compare" class="btn">人件費との比較</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="hd">プランの考え方</div>
+            <div class="bd">
+              <ul class="list">
+                <li>席＝同時通話1。プランは <strong>日次キャップ（1席あたりの上限分）</strong>で選択。</li>
+                <li>含有分は <strong>日次キャップ×22日</strong> を基準化（暦日数によらず実効単価が安定）。</li>
+                <li>上限を超える日は、<strong>席の「日次追加」</strong>または<strong>固定分数パック</strong>で拡張。</li>
+                <li>導入は最小席数から。利用増に合わせて席を追加するだけ。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="features" class="features">
+          <div class="feature">
+            <div class="icon" aria-hidden="true"></div>
+            <h4>即応答・取り逃しゼロへ</h4>
+            <p>営業時間内外・話中でも即応答。要件をAIが分類し、SMS/LINEでURLや案内を自動送付。</p>
+          </div>
+          <div class="feature">
+            <div class="icon" aria-hidden="true"></div>
+            <h4>座席スケールで拡張</h4>
+            <p>同時通話＝席の追加。繁忙日は「席の日次追加」でバースト対応。</p>
+          </div>
+          <div class="feature">
+            <div class="icon" aria-hidden="true"></div>
+            <h4>ダッシュボード可視化</h4>
+            <p>着信要件・混雑時間帯・対応結果を可視化。運営の意思決定を支援。</p>
+          </div>
+          <div class="feature">
+            <div class="icon" aria-hidden="true"></div>
+            <h4>完全月額の明瞭会計</h4>
+            <p>実効単価は常に35〜38円/分レンジ。社内稟議が通しやすい料金体系。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2 class="sec-h">料金プラン（席＝同時通話1）</h2>
+        <p class="sec-sub">価格は税抜。含有分は <strong>日次上限×22日</strong> で固定。実効単価は常に約35〜38円/分。</p>
+
+        <div class="pricing">
+          <!-- Lite -->
+          <article class="card price-card">
+            <div class="pc-hd"><div class="pc-title">Lite</div></div>
+            <div class="pc-bd">
+              <div class="pc-money">¥<span data-money="Lite">99,800</span> <small>/ 席・月</small></div>
+              <div class="kv">
+                <div><div class="k">日次上限</div><div class="v">120 分/日</div></div>
+                <div><div class="k">含有分/月</div><div class="v">2,640 分</div></div>
+                <div><div class="k">実効</div><div class="v">≈ 37.8 円/分</div></div>
+                <div><div class="k">日次追加</div><div class="v">¥4,500 / 席・日</div></div>
+              </div>
+              <ul class="list">
+                <li>同時通話=1席。超過は席の追加で対応</li>
+                <li>固定分数パック：10,000分 = ¥378,000</li>
+              </ul>
+            </div>
+            <div class="pc-ft">小規模拠点・予約案内に</div>
+          </article>
+
+          <!-- Basic -->
+          <article class="card price-card">
+            <div class="pc-hd"><div class="pc-title">Basic</div></div>
+            <div class="pc-bd">
+              <div class="pc-money">¥<span data-money="Basic">149,800</span> <small>/ 席・月</small></div>
+              <div class="kv">
+                <div><div class="k">日次上限</div><div class="v">180 分/日</div></div>
+                <div><div class="k">含有分/月</div><div class="v">3,960 分</div></div>
+                <div><div class="k">実効</div><div class="v">≈ 37.8 円/分</div></div>
+                <div><div class="k">日次追加</div><div class="v">¥6,800 / 席・日</div></div>
+              </div>
+              <ul class="list">
+                <li>同時通話=1席。超過は席の追加で対応</li>
+                <li>固定分数パック：10,000分 = ¥378,000</li>
+              </ul>
+            </div>
+            <div class="pc-ft">標準的な窓口・多拠点に</div>
+          </article>
+
+          <!-- Pro -->
+          <article class="card price-card">
+            <div class="pc-hd"><div class="pc-title">Pro</div></div>
+            <div class="pc-bd">
+              <div class="pc-money">¥<span data-money="Pro">199,800</span> <small>/ 席・月</small></div>
+              <div class="kv">
+                <div><div class="k">日次上限</div><div class="v">240 分/日</div></div>
+                <div><div class="k">含有分/月</div><div class="v">5,280 分</div></div>
+                <div><div class="k">実効</div><div class="v">≈ 37.8 円/分</div></div>
+                <div><div class="k">日次追加</div><div class="v">¥9,000 / 席・日</div></div>
+              </div>
+              <ul class="list">
+                <li>同時通話=1席。超過は席の追加で対応</li>
+                <li>固定分数パック：10,000分 = ¥378,000</li>
+              </ul>
+            </div>
+            <div class="pc-ft">高トラフィック・本部窓口に</div>
+          </article>
+
+          <!-- Max -->
+          <article class="card price-card">
+            <div class="pc-hd"><div class="pc-title">Max</div></div>
+            <div class="pc-bd">
+              <div class="pc-money">¥<span data-money="Max">249,800</span> <small>/ 席・月</small></div>
+              <div class="kv">
+                <div><div class="k">日次上限</div><div class="v">300 分/日</div></div>
+                <div><div class="k">含有分/月</div><div class="v">6,600 分</div></div>
+                <div><div class="k">実効</div><div class="v">≈ 37.8 円/分</div></div>
+                <div><div class="k">日次追加</div><div class="v">¥11,400 / 席・日</div></div>
+              </div>
+              <ul class="list">
+                <li>同時通話=1席。超過は席の追加で対応</li>
+                <li>固定分数パック：10,000分 = ¥378,000</li>
+              </ul>
+            </div>
+            <div class="pc-ft">最大負荷に。旗艦拠点向け</div>
+          </article>
+        </div>
+
+        <div class="card" style="margin-top:22px">
+          <div class="hd">席×同時通話のカンタン見積</div>
+          <div class="bd calc">
+            <form class="form" onsubmit="return false;">
+              <label>プラン</label>
+              <select id="plan">
+                <option value="Lite">Lite（120分/日）</option>
+                <option value="Basic" selected>Basic（180分/日）</option>
+                <option value="Pro">Pro（240分/日）</option>
+                <option value="Max">Max（300分/日）</option>
+              </select>
+              <div style="height:14px"></div>
+              <label>席数（=同時通話本数）</label>
+              <input id="seats" type="number" min="1" value="10" />
+              <div style="height:14px"></div>
+              <label>利用率（含有分に対する）</label>
+              <select id="util">
+                <option value="1">100%</option>
+                <option value="0.8">80%</option>
+                <option value="0.6">60%</option>
+              </select>
+            </form>
+            <div class="stat">
+              <div class="s"><div class="k">月額（税抜）</div><div class="v" id="outPrice">-</div></div>
+              <div class="s"><div class="k">含有分（合計）</div><div class="v" id="outMins">-</div></div>
+              <div class="s"><div class="k">実効 ¥/分（利用率考慮）</div><div class="v" id="outEff">-</div></div>
+            </div>
+          </div>
+          <div class="pc-ft">初期費用：¥30,000/案件（任意）／ 最低利用期間：12ヶ月（任意）</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="container">
+        <h2 class="sec-h">人件費（¥2,600/時）との比較</h2>
+        <p class="sec-sub">稼働率80%（通話＋後処理）を前提にすると、人の通話コストはおおむね <strong>¥54/分</strong> 前後（社保や管理費でさらに増加することも）。AURALは実効 <strong>¥35〜38/分</strong> で安定運用が可能です。</p>
+        <div class="compare">
+          <div class="card item">
+            <h3>モデルケース</h3>
+            <ul class="list">
+              <li>同時通話：10席（Basic）→ 月額 1,498,000円</li>
+              <li>含有分：3,960分 × 10席 = 39,600分/月</li>
+              <li>実効：約 1,498,000 / 39,600 ≈ 37.8円/分</li>
+            </ul>
+          </div>
+          <div class="card item">
+            <h3>概算の差分</h3>
+            <ul class="list">
+              <li>人件費ベース（80%稼働）：約 54円/分</li>
+              <li>AURAL：35〜38円/分</li>
+              <li>差分：▲約16〜19円/分（▲30〜35%）※条件により変動</li>
+            </ul>
+          </div>
+        </div>
+        <p class="sec-sub" style="margin-top:12px; font-size:13px">注：各社の稼働率・通話時間構成・ナレッジ整備状況により効果は変動します。詳細は無料相談で現状KPIを拝見し、個別にお見積りします。</p>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2 class="sec-h">FAQ</h2>
+        <div class="faq">
+          <div class="qa"><h4>同時通話はどのように増やせますか？</h4><p>席（=同時通話1）を追加いただくだけです。繁忙日は「席の日次追加」でも対応可能です。</p></div>
+          <div class="qa"><h4>上限を超過した日の課金は？</h4><p>完全月額のまま運用するため、超過は「席の日次追加」または固定分数パックで対応します（分課金表記はしません）。</p></div>
+          <div class="qa"><h4>月の暦日数が変わる月は？</h4><p>含有分は日次キャップ×22日で固定しています。暦日数に依存せず、実効単価が安定します。</p></div>
+          <div class="qa"><h4>最小構成や契約期間は？</h4><p>最小1席から。推奨は12ヶ月契約（長期割引あり）。初期費用は¥30,000/案件（任意）です。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="sec-h">お問い合わせ</h2>
+        <p class="sec-sub">要件・目標KPI・想定同時通話数をご共有ください。最適な席数と日次追加の運用設計をご提案します。</p>
+        <div class="card" style="max-width:860px; margin:auto">
+          <div class="bd">
+            <form onsubmit="event.preventDefault(); alert('送信ありがとうございました。担当よりご連絡します。');">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+                <div>
+                  <label>お名前</label>
+                  <input required placeholder="山田 太郎" />
+                </div>
+                <div>
+                  <label>メール</label>
+                  <input required type="email" placeholder="taro@example.com" />
+                </div>
+              </div>
+              <div style="height:12px"></div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+                <div>
+                  <label>想定プラン</label>
+                  <select>
+                    <option>Lite（120分/日）</option>
+                    <option selected>Basic（180分/日）</option>
+                    <option>Pro（240分/日）</option>
+                    <option>Max（300分/日）</option>
+                  </select>
+                </div>
+                <div>
+                  <label>同時通話本数（席数）</label>
+                  <input type="number" min="1" value="10" />
+                </div>
+              </div>
+              <div style="height:12px"></div>
+              <label>ご要件</label>
+              <textarea rows="5" style="width:100%; background:#0c1428; border:1px solid var(--border); border-radius:12px; padding:12px; color:var(--text)" placeholder="例：予約窓口/問い合わせ対応の即応率改善、受付項目の分類、SMSによるセルフ誘導、CRM連携など"></textarea>
+              <div style="height:14px"></div>
+              <button class="btn btn-primary" type="submit">送信</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="year"></span> AURAL. All rights reserved.</div>
+      <div style="font-size:13px">表記は税抜。仕様・価格は予告なく変更となる場合があります。</div>
+    </div>
+  </footer>
+
+  <script>
+    const DAYS_BASE = 22;
+    const plans = {
+      Lite:  { cap:120, price:99800 },
+      Basic: { cap:180, price:149800 },
+      Pro:   { cap:240, price:199800 },
+      Max:   { cap:300, price:249800 },
+    };
+
+    const fmtYen = v => v.toLocaleString('ja-JP');
+
+    function updateCalc(){
+      const planKey = document.getElementById('plan').value;
+      const seats = Math.max(1, parseInt(document.getElementById('seats').value||'1',10));
+      const util = parseFloat(document.getElementById('util').value||'1');
+      const plan = plans[planKey];
+      const includedPerSeat = plan.cap * DAYS_BASE; // 分
+      const usedPerSeat = Math.round(includedPerSeat * util);
+      const usedTotal = usedPerSeat * seats;
+      const price = plan.price * seats;
+      const eff = usedTotal>0 ? price/usedTotal : 0;
+
+      document.getElementById('outPrice').textContent = '¥' + fmtYen(price);
+      document.getElementById('outMins').textContent = fmtYen( includedPerSeat * seats ) + ' 分/月';
+      document.getElementById('outEff').textContent = (Math.round(eff*10)/10).toFixed(1) + ' 円/分';
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    ['plan','seats','util'].forEach(id=> document.getElementById(id).addEventListener('input', updateCalc));
+    updateCalc();
+  </script>
+</body>
+</html>
