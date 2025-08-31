@@ -45,7 +45,8 @@ if (hero) {
 
 // Tilt + glow for cards
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!reduceMotion) {
+const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+if (!reduceMotion && !isTouch) {
   document.querySelectorAll(".card.tilt").forEach(card => {
     let rx = 0, ry = 0, rafId = 0;
     const max = 7; // deg
@@ -147,3 +148,31 @@ if (copyBtn){
     }
   });
 }
+
+
+// Mobile drawer menu
+(function(){
+  const btn = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('[data-nav]');
+  const overlay = document.querySelector('[data-overlay]');
+  if (!btn || !nav || !overlay) return;
+  function open(){
+    btn.classList.add('active');
+    btn.setAttribute('aria-expanded','true');
+    nav.classList.add('open');
+    overlay.classList.add('show');
+    document.documentElement.style.overflow='hidden';
+  }
+  function close(){
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded','false');
+    nav.classList.remove('open');
+    overlay.classList.remove('show');
+    document.documentElement.style.overflow='';
+  }
+  btn.addEventListener('click', ()=>{
+    if (nav.classList.contains('open')) close(); else open();
+  });
+  overlay.addEventListener('click', close);
+  nav.querySelectorAll('a').forEach(a=> a.addEventListener('click', close));
+})();

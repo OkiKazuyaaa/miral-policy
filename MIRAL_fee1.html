@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>MIRAL | ホール経営をAIで再設計するダッシュボード</title>
   <meta name="description" content="MIRALは、AI売上予測・イベント効果分析・撤去増台シミュレーションなど現場の判断に直結する機能を一体化。意思決定を“早く・正しく・再現可能”にします。">
   <meta name="theme-color" content="#FF7A1A" />
@@ -29,7 +29,8 @@
         <div class="logo" aria-label="MIRAL ロゴ"></div>
         <span class="brandname">MIRAL</span>
       </div>
-      <nav class="navlinks">
+      <button class="menu-toggle" aria-label="メニュー" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+      <nav class="navlinks" id="mobile-nav" data-nav>
         <a href="#features">機能</a>
         <a href="#flow">導入まで</a>
         <a href="#security">セキュリティ</a>
@@ -37,7 +38,8 @@
         <a href="#contact" class="btn primary magnet">デモを依頼</a>
       </nav>
     </div>
-  </header>
+    <div class="nav-overlay" data-overlay></div>
+</header>
 
   <section class="hero">
     <div class="container hero-wrap">

@@ -217,3 +217,70 @@ footer{background:#fff}
     linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.6)),
     #fafafa;
 }
+
+
+/* --- Mobile friendly additions --- */
+
+/* Safe area for iOS notch */
+.site-header{padding-top: max(0px, env(safe-area-inset-top));}
+
+/* Hamburger */
+.menu-toggle{
+  display:none; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:10px; border:1px solid #e5e7eb; background:#fff;
+  box-shadow:0 1px 2px rgba(16,24,40,.06); cursor:pointer;
+}
+.menu-toggle span{display:block; width:20px; height:2px; background:#0f172a; border-radius:2px; margin:3px 0; transform-origin:center; transition:transform .2s ease, opacity .2s ease}
+.menu-toggle.active span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-toggle.active span:nth-child(2){opacity:0}
+.menu-toggle.active span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+/* Drawer nav (mobile) */
+.navlinks[data-nav]{
+  transition: transform .25s ease, opacity .25s ease;
+}
+@media (max-width: 980px){
+  .menu-toggle{display:inline-flex}
+  .navlinks[data-nav]{
+    position: fixed; top: calc(56px + env(safe-area-inset-top)); right:0;
+    width:min(86vw, 320px); height: calc(100vh - (56px + env(safe-area-inset-top)));
+    background:#fff; border-left:1px solid #eef1f4; box-shadow:-12px 0 30px rgba(16,24,40,.08);
+    display:flex; flex-direction:column; gap:8px; padding:16px; transform: translateX(100%); z-index:55;
+  }
+  .navlinks[data-nav].open{transform: translateX(0);}
+  .navlinks[data-nav] a{padding:12px; font-weight:600; color:#0f172a}
+  .nav .btn{width:100%}
+  .nav-overlay[data-overlay]{position:fixed; inset:0; background:rgba(15,23,42,.28); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:54}
+  .nav-overlay[data-overlay].show{opacity:1; pointer-events:auto}
+}
+
+/* Touch-friendly targets */
+a, button, .btn{min-height:44px}
+
+/* Hero screen size tuning for phones */
+@media (max-width: 980px){
+  .hero{padding:56px 0 24px 0}
+  .screen{height:300px}
+}
+@media (max-width: 640px){
+  .screen{height:240px}
+  h1{font-size:clamp(26px, 7vw, 34px)}
+}
+@media (max-width: 480px){
+  .screen{height:210px}
+  .stat{min-width:140px}
+  .orb.two,.orb.three{display:none}
+}
+
+/* Feature grid on small screens */
+@media (max-width: 980px){
+  .grid.features{grid-template-columns:1fr}
+}
+
+/* Prevent image overflow inside cards (just in case) */
+.card img{max-width:100%; height:auto; display:block}
+
+/* iOS momentum scroll for drawer */
+@supports (-webkit-overflow-scrolling: touch){
+  .navlinks[data-nav]{-webkit-overflow-scrolling: touch; overflow:auto}
+}
